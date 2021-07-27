@@ -63,9 +63,9 @@ class App extends Component{
 
   handleChange = e => {
     let { id, value } = e.target
-    value = value.split('')
-    if(value.length > 1){
-      value = value.join('')
+    console.log(typeof value)
+    console.log(/^#[0-9A-F]{6}$/i.test(value))
+    if(/\p{Emoji}/u.test(value) || /^#[0-9A-F]{6}$/i.test(value)){
       value = value.split()
     }
     if(id === 'player1'){
