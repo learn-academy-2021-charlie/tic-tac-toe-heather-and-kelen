@@ -2,9 +2,16 @@ import React from 'react'
 
 const WinnerCard = (props) => {
   return (
-    <div id='winnerCard'>
-      {props.winStatus} won!!!
-    </div>
+    <>
+      {props.winStatus !== 'Draw' && <div id='winnerCard'>
+        {props.winStatus} won!!!
+      </div>
+      }
+      {props.winStatus === 'Draw' && <div id='winnerCard'>
+        It's a draw!
+      </div>
+      }
+    </>
   )
 }
 

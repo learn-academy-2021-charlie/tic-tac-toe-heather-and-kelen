@@ -3,6 +3,7 @@ import Square from './components/Square'
 import './App.css'
 import WinnerCard from './components/WinnerCard'
 import ResetButton from './components/ResetButton'
+import CharSelector from './components/CharSelector'
 
 class App extends Component{
   constructor(props){
@@ -10,7 +11,9 @@ class App extends Component{
     this.state = {
       squares: ['', '', '', '', '', '', '', '', ''],
       player: 'X',
-      winStatus: ''
+      winStatus: '',
+      player1: 'X',
+      player2: 'O',
     }
   }
 
@@ -25,7 +28,7 @@ class App extends Component{
       [3,4,5],
       [6,7,8]
     ]
-    let { squares, player } = this.state
+    let { squares, player, player1, player2 } = this.state
     let winStatus = ''
     if(!squares[index] && !this.state.winStatus){
       squares[index] = player
@@ -39,14 +42,14 @@ class App extends Component{
           winStatus = player
         }
       }
-      player === 'X' ? player = 'O' : player = 'X'
+      player === player1 ? player = player2 : player = player1
+      if(squares.every((e) => e !== '')){winStatus = 'Draw'}
       this.setState({
         squares: squares,
         player: player,
         winStatus: winStatus
       })
     }
-    console.log(winStatus)
   }
 
   handleReset = () => {
@@ -57,10 +60,27 @@ class App extends Component{
     })
   }
 
+  handleChange = e => {
+    const { id, value } = e.target
+    if(id === 'player1'){
+      this.setState({player1: value, player: value})
+    }else if(id === 'player2'){
+      this.setState({player2: value})
+    }
+    console.log(e.target.id)
+  }
+
   render(){
     return(
       <>
         <h1>Tic Tac Toe</h1>
+        <div id='playerInput'>
+          <h2>Player 1:</h2>
+          <CharSelector value={this.state.player1} handleChange={this.handleChange} id='player1'/>
+          <h2>Player 2:</h2>
+          <CharSelector value={this.state.player2} handleChange={this.handleChange} id='player2'/>
+        </div>
+        <br/>
         <div id='gameboard'>
           {this.state.squares.map((value, index) => {
             return <Square

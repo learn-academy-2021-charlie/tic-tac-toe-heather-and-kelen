@@ -2,10 +2,22 @@ h1{
   text-align: center;
   font-size: 5rem;
 }
-#root{
+body{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #5bbdde;
+  align-items: center;
+  justify-content: space-around;
+}
+input{
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+  align-self: flex-end;
+}
+#playerInput{
+  display: flex;
+  flex-flow: row wrap;
 }
 .square{
   height: 100px;
