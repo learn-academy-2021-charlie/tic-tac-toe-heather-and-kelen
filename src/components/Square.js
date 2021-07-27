@@ -6,9 +6,18 @@ class Square extends Component{
     handleGameplay(index)
   }
   render(){
+    const { value } = this.props
     return(
       <>
-        <div className="square" onClick={this.handleClick}>{this.props.value}</div>
+        {/^#[0-9A-F]{6}$/i.test(value) && <div
+          style={{backgroundColor: `${value}`}}
+          onClick={this.handleClick}
+          className="square"
+        ></div>}
+        {!/^#[0-9A-F]{6}$/i.test(value) && <div
+          className="square"
+          onClick={this.handleClick}>
+          {value}</div>}
       </>
     )
   }
