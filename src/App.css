@@ -2,6 +2,11 @@ h1{
   text-align: center;
   font-size: 5rem;
 }
+#root{
+  display: flex;
+  flex-direction: column;
+  background-color: #5bbdde;
+}
 .square{
   height: 100px;
   width: 100px;
@@ -19,4 +24,9 @@ h1{
 #winnerCard{
   font-size: 10rem;
   text-align: center;
+}
+#resetButton{
+  align-self: center;
+  height: 30px;
+  width: 100px;
 }
