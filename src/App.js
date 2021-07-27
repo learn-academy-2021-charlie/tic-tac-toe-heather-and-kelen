@@ -50,7 +50,6 @@ class App extends Component{
         winStatus: winStatus
       })
     }
-    console.log(this.state.player1)
   }
 
   handleReset = () => {
@@ -62,13 +61,17 @@ class App extends Component{
   }
 
   handleChange = e => {
-    const { id, value } = e.target
-    if(id === 'player1'){
-      this.setState({player1: value, player: value})
-    }else if(id === 'player2'){
-      this.setState({player2: value})
+    let { id, value } = e.target
+    value = value.split('')
+    if(value.length > 1){
+      value = value.join('')
+      value = value.split()
     }
-    console.log(e.target.id)
+    if(id === 'player1'){
+      this.setState({player1: value[0], player: value[0]})
+    }else if(id === 'player2'){
+      this.setState({player2: value[0]})
+    }
   }
 
   render(){

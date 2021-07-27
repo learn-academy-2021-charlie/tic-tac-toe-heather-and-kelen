@@ -6,7 +6,6 @@ const CharSelector = props => {
       <input
         type='text'
         id={props.id}
-        maxLength={1}
         onChange={props.handleChange}
       />
     </>
