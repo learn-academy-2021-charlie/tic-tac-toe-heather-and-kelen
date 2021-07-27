@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Square from './components/Square'
 import './App.css'
 import WinnerCard from './components/WinnerCard'
+import ResetButton from './components/ResetButton'
 
 class App extends Component{
   constructor(props){
@@ -48,6 +49,14 @@ class App extends Component{
     console.log(winStatus)
   }
 
+  handleReset = () => {
+    this.setState({
+      squares: ['', '', '', '', '', '', '', '', ''],
+      player: 'X',
+      winStatus: ''
+    })
+  }
+
   render(){
     return(
       <>
@@ -63,6 +72,7 @@ class App extends Component{
           })}
         </div>
         {this.state.winStatus && <WinnerCard winStatus={this.state.winStatus}/>}
+        {this.state.winStatus && <ResetButton handleReset={this.handleReset}/>}
       </>
     )
   }
