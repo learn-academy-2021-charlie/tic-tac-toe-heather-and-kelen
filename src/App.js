@@ -42,14 +42,15 @@ class App extends Component{
           winStatus = player
         }
       }
+      if(squares.every((e) => e !== '') && !winStatus){winStatus = 'Draw'}
       player === player1 ? player = player2 : player = player1
-      if(squares.every((e) => e !== '')){winStatus = 'Draw'}
       this.setState({
         squares: squares,
         player: player,
         winStatus: winStatus
       })
     }
+    console.log(this.state.player1)
   }
 
   handleReset = () => {
