@@ -4,6 +4,7 @@ import './App.css'
 import WinnerCard from './components/WinnerCard'
 import ResetButton from './components/ResetButton'
 import CharSelector from './components/CharSelector'
+import TurnIndicator from './components/TurnIndicator'
 
 class App extends Component{
   constructor(props){
@@ -85,6 +86,7 @@ class App extends Component{
           <CharSelector value={this.state.player2} handleChange={this.handleChange} id='player2'/>
         </div>
         <br/>
+        <TurnIndicator player={this.state.player}/>
         <div id='gameboard'>
           {this.state.squares.map((value, index) => {
             return <Square
