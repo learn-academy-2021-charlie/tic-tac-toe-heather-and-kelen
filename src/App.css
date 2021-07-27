@@ -19,6 +19,9 @@ input{
   display: flex;
   flex-flow: row wrap;
 }
+#turnIndicator{
+  font-size: 3rem;
+}
 .square{
   height: 100px;
   width: 100px;
@@ -34,11 +37,11 @@ input{
   margin: 0 auto;
 }
 #winnerCard{
-  font-size: 10rem;
+  font-size: 5rem;
   text-align: center;
 }
 #resetButton{
-  align-self: center;
+  align-self: flex-end;
   height: 30px;
   width: 100px;
 }

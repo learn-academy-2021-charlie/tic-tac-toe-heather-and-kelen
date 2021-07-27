@@ -4,6 +4,7 @@ import './App.css'
 import WinnerCard from './components/WinnerCard'
 import ResetButton from './components/ResetButton'
 import CharSelector from './components/CharSelector'
+import TurnIndicator from './components/TurnIndicator'
 
 class App extends Component{
   constructor(props){
@@ -42,8 +43,8 @@ class App extends Component{
           winStatus = player
         }
       }
+      if(squares.every((e) => e !== '') && !winStatus){winStatus = 'Draw'}
       player === player1 ? player = player2 : player = player1
-      if(squares.every((e) => e !== '')){winStatus = 'Draw'}
       this.setState({
         squares: squares,
         player: player,
@@ -61,13 +62,17 @@ class App extends Component{
   }
 
   handleChange = e => {
-    const { id, value } = e.target
-    if(id === 'player1'){
-      this.setState({player1: value, player: value})
-    }else if(id === 'player2'){
-      this.setState({player2: value})
+    let { id, value } = e.target
+    value = value.split('')
+    if(value.length > 1){
+      value = value.join('')
+      value = value.split()
     }
-    console.log(e.target.id)
+    if(id === 'player1'){
+      this.setState({player1: value[0], player: value[0]})
+    }else if(id === 'player2'){
+      this.setState({player2: value[0]})
+    }
   }
 
   render(){
@@ -81,6 +86,7 @@ class App extends Component{
           <CharSelector value={this.state.player2} handleChange={this.handleChange} id='player2'/>
         </div>
         <br/>
+        <TurnIndicator player={this.state.player}/>
         <div id='gameboard'>
           {this.state.squares.map((value, index) => {
             return <Square
