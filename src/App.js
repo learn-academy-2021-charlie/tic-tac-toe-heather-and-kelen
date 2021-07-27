@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import Square from './components/Square'
 import './App.css'
+import WinnerCard from './components/WinnerCard'
 
 class App extends Component{
   constructor(props){
     super(props)
     this.state = {
       squares: ['', '', '', '', '', '', '', '', ''],
-      player: 'X'
-
+      player: 'X',
+      winStatus: ''
     }
   }
 
@@ -24,23 +25,27 @@ class App extends Component{
       [6,7,8]
     ]
     let { squares, player } = this.state
-    if(!squares[index]){
+    let winStatus = ''
+    if(!squares[index] && !this.state.winStatus){
       squares[index] = player
-      let playerMoves = squares.map((value, i)=> {
+      let playerMoves = squares.map((value, currentIndex)=> {
         if(value === player){
-          return i
-        }
+          return currentIndex
+        } else return null
       })
-      console.log(playerMoves)
+      for(let j=0; j<winCond.length; j++){
+        if(winCond[j].every((arr) => playerMoves.includes(arr))){
+          winStatus = player
+        }
+      }
       player === 'X' ? player = 'O' : player = 'X'
       this.setState({
         squares: squares,
-        player: player
-
-
+        player: player,
+        winStatus: winStatus
       })
     }
-    console.log('parent')
+    console.log(winStatus)
   }
 
   render(){
@@ -57,6 +62,7 @@ class App extends Component{
             />
           })}
         </div>
+        {this.state.winStatus && <WinnerCard winStatus={this.state.winStatus}/>}
       </>
     )
   }
