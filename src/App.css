@@ -2,4 +2,12 @@
   height: 100px;
   width: 100px;
   border: 2px solid black;
+  text-align: center;
+  font-size: 5rem;
+}
+#gameboard{
+  height: 315px;
+  width: 315px;
+  display: flex;
+  flex-flow: row wrap;
 }
